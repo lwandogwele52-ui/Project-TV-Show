@@ -3,19 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Show Project | Quentin Gwele (lwandogwele52-ui)</title>
+    <title>TV Show Project | Quentin Gwele (lwandogwele52-ui)</title>
     <link href="style.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
-    </div>
+    <header id="controls">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Search episodes..."
+        aria-label="Search episodes"
+      />
+      <select id="episode-select" aria-label="Select an episode">
+        <option value="all">Show all episodes</option>
+      </select>
+      <p id="episode-count"></p>
+    </header>
 
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <div id="root"></div>
+
+    <!-- Loads a provided function called getAllEpisodes() -->
     <script src="episodes.js"></script>
 
-    <!-- Loads YOUR javascript code -->
+    <!-- Loads YOUR code -->
     <script src="script.js"></script>
   </body>
 </html>

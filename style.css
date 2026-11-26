@@ -10,6 +10,40 @@ body {
   color: #1f2937;
 }
 
+#controls {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+#search-input,
+#episode-select {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+#search-input {
+  flex: 1 1 240px;
+}
+
+#episode-select {
+  min-width: 240px;
+}
+
+#episode-count {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
 #root {
   max-width: 1200px;
   margin: 0 auto;
@@ -80,3 +114,4 @@ body {
 .tvmaze-attribution a:hover {
   text-decoration: underline;
 }
+
