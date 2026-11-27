@@ -1,17 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Quentin Gwele (lwandogwele52-ui)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
-    </div>
+    <main>
+      <div id="search-box">
+        <label for="search-input">Search episodes:</label>
+        <input
+          type="search"
+          id="search-input"
+          name="search-input"
+          placeholder="Search..."
+        />
+        <p id="match-count"></p>
+        <label for="episode-select">Jump to episode:</label>
+        <select id="episode-select">
+          <option value="">Select an episode...</option>
+        </select>
+      </div>
 
+      <div id="root"></div>
+    </main>
+    <footer class="tvmaze-attribution">
+      Data originally from
+      <a
+        href="https://www.tvmaze.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >TVMaze.com</a
+      >.
+    </footer>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
