@@ -18,31 +18,41 @@ function makePageForEpisodes(episodeList) {
   episodesContainer.className = "episodes-list";
 
   episodeList.forEach((episode) => {
-    const episodeCard = document.createElement("article");
-    episodeCard.className = "episode-card";
-
-    const titleElem = document.createElement("h2");
-    const code = formatEpisodeCode(episode.season, episode.number);
-    titleElem.textContent = `${episode.name} — ${code}`;
-
-    const imageElem = document.createElement("img");
-    imageElem.src = episode.image ? episode.image.medium : "";
-    imageElem.alt = `${episode.name} (${code})`;
-
-    const summaryElem = document.createElement("div");
-    summaryElem.className = "episode-summary";
-    summaryElem.innerHTML = episode.summary || "<p>No summary available.</p>";
-
-    episodeCard.append(titleElem, imageElem, summaryElem);
-    episodesContainer.appendChild(episodeCard);
+    const card = createEpisodeCard(episode);
+    episodesContainer.appendChild(card);
   });
+  rootElem.append(episodesContainer);
+}
 
-  const attributionElem = document.createElement("footer");
-  attributionElem.className = "tvmaze-attribution";
-  attributionElem.innerHTML =
-    'Data originally from <a href="https://www.tvmaze.com/" target="_blank" rel="noopener noreferrer">TVMaze.com</a>.';
+function createEpisodeCard(episode) {
+  const episodeCard = document.createElement("article");
+  episodeCard.className = "episode-card";
 
-  rootElem.append(episodesContainer, attributionElem);
+  const titleElem = document.createElement("h2");
+  const code = formatEpisodeCode(episode.season, episode.number);
+  titleElem.textContent = `${episode.name} — ${code}`;
+
+  const imageElem = document.createElement("img");
+  if (episode.image) {
+    imageElem.src = episode.image.medium;
+  } else {
+    imageElem.style.display = "none";
+  }
+  imageElem.alt = `${episode.name} (${code})`;
+
+  const summaryElem = document.createElement("div");
+  summaryElem.className = "episode-summary";
+  if (episode.summary) {
+    // Strip the <p> tags so we have clean text for searching and displaying
+    summaryElem.textContent = episode.summary
+      .replace("<p>", "")
+      .replace("</p>", "");
+  } else {
+    summaryElem.textContent = "No summary available.";
+  }
+
+  episodeCard.append(titleElem, imageElem, summaryElem);
+  return episodeCard;
 }
 
 window.onload = setup;
