@@ -2,6 +2,11 @@
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+
+  const searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", () => {
+    handleSearch(allEpisodes);
+  });
 }
 
 function formatEpisodeCode(season, number) {
@@ -16,6 +21,9 @@ function makePageForEpisodes(episodeList) {
 
   const episodesContainer = document.createElement("section");
   episodesContainer.className = "episodes-list";
+
+  document.getElementById("match-count").textContent =
+    `Displaying ${episodeList.length} episodes`;
 
   episodeList.forEach((episode) => {
     const card = createEpisodeCard(episode);
@@ -53,6 +61,22 @@ function createEpisodeCard(episode) {
 
   episodeCard.append(titleElem, imageElem, summaryElem);
   return episodeCard;
+}
+
+function handleSearch(episodeList) {
+  const searchTerm = document
+    .getElementById("search-input")
+    .value.toLowerCase();
+
+  const filteredEpisodes = episodeList.filter((episode) => {
+    const nameMatches = episode.name.toLowerCase().includes(searchTerm);
+    const summaryMatches =
+      episode.summary && episode.summary.toLowerCase().includes(searchTerm);
+
+    return nameMatches || summaryMatches;
+  });
+
+  makePageForEpisodes(filteredEpisodes);
 }
 
 window.onload = setup;
